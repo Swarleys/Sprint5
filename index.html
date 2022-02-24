@@ -4,10 +4,40 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Joke App</title>
   </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+  <body class="bg-slate-50">
+    <main
+      class="flex justify-center items-center flex-col my-60 py-40 rounded-3xl bg-white max-w-5xl m-auto align-middle shadow-2xl shadow-slate-300"
+    >
+      <h1 class="text-6xl">Are you ready to laugh? 🤣</h1>
+      <p class="joke py-28 text-2xl mx-8"></p>
+      <div class="flex mb-20 justify-around w-full">
+        <button
+          class="p-2 rounded-md bg-red-400 text-white"
+          onclick="addScore(1)"
+        >
+          Meh</button
+        ><button
+          class="p-2 rounded-md bg-amber-400 text-white"
+          onclick="addScore(2)"
+        >
+          Good</button
+        ><button
+          class="p-2 rounded-md bg-teal-400 text-white"
+          onclick="addScore(3)"
+        >
+          Excelent
+        </button>
+      </div>
+      <button
+        type="button"
+        onclick="getJoke()"
+        class="bg-blue-400 p-2 rounded-md text-white max-w-fit"
+      >
+        Next joke
+      </button>
+    </main>
+    <script type="module" src="./src/main.ts" defer></script>
   </body>
 </html>
