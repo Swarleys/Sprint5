@@ -5,8 +5,11 @@ let reportJokes: jokeQuality[] = [];
 
 const JOKEAPI = `https://icanhazdadjoke.com/`;
 const NORRISAPI = `https://api.chucknorris.io/jokes/random`;
-const jokeElement = <HTMLParagraphElement>document.querySelector('.joke')
-const weatherElement = <HTMLParagraphElement>document.querySelector('.weather')
+const jokeElement = <HTMLParagraphElement>document.querySelector('.joke');
+const weatherElement = <HTMLParagraphElement>document.querySelector('.weather');
+const weatherImgElement = <HTMLImageElement>document.querySelector('.weatherImg');
+const buttons: HTMLButtonElement[] = Array.from(document.querySelectorAll('.scoring-buttons') as NodeListOf<HTMLButtonElement>);
+let buttonsEnabled = false;
 
 const getDadJoke = async (): Promise<JokeDadResponse> => {
   const response = await fetch(JOKEAPI, {
@@ -54,19 +57,26 @@ const getWeather = async (lat: string, lon: string, API_KEY: string, units: stri
   const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${units}`);
 
   const weatherResponse: WeatherResponse = await response.json();
-  weatherElement.innerText = `The weather in ${weatherResponse.name} is ${weatherResponse.weather[0].description}`;
+  weatherElement.innerText = `${weatherResponse.main.temp} ºC`;
+  weatherImgElement.src = `http://openweathermap.org/img/wn/${weatherResponse.weather[0].icon}@2x.png`;
+  weatherImgElement.alt = weatherResponse.weather[0].description;
 
   return weatherResponse;
 };
 
 const getJoke = (): Promise<JokeDadResponse | JokeNorrisResponse> => {
+  if (!buttonsEnabled) {
+    for (const button of buttons) {
+      button.disabled = false;
+    }
+    buttonsEnabled = true;
+  }
   const random = Math.ceil(Math.random() * 10);
 
   return random < 5 ? getDadJoke() : getNorrisJoke()
 }
 
 getWeather('41.3888', '2.159', import.meta.env.VITE_API_WEATHER, 'metric');
-getJoke();
 
 (<any>window).getJoke = getJoke;
 (<any>window).addScore = addScore;

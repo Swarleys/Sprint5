@@ -10,3 +10,15 @@
   color: #2c3e50;
   margin-top: 60px;
 }
+
+body {
+  overflow: hidden;
+}
+main {
+  height: 55vh;
+}
+
+button {
+  border: 3px solid black;
+}
+
