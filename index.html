@@ -4,10 +4,39 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Joke App</title>
   </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+  <body class="bg-slate-50 relative">
+    <div class="flex items-center mt-5 ml-5">
+      <img
+        src=""
+        alt=""
+        class="weatherImg pr-3 border-r-[5px] border-r-black"
+      />
+      <p class="weather pl-5 text-4xl"></p>
+    </div>
+    <div class="bg-blob-1 w-[300px] h-[300px] left-[300px] top-[100px] absolute"></div>
+    <main
+      class="flex justify-center items-center flex-col rounded-3xl max-w-6xl m-auto align-middle bg-main-content bg-no-repeat mt-[15%]"
+    >
+      <h1 class="text-6xl text-white">Are you ready to laugh?</h1>
+      <p
+        class="joke py-16 text-2xl text-white items-center w-[800px] text-center"
+      ></p>
+      <div class="flex mb-20 justify-around w-96">
+        <button class="text-6xl border-transparent scoring-buttons" onclick="addScore(1)" disabled>😓</button>
+        <button class="text-6xl border-transparent scoring-buttons" onclick="addScore(2)" disabled>🙂</button>
+        <button class="text-6xl border-transparent scoring-buttons" onclick="addScore(3)" disabled>😆</button>
+      </div>
+      <button
+        type="button"
+        onclick="getJoke()"
+        class="bg-amber-400 p-3 px-5 rounded-[50px] text-white max-w-fit text-2xl border-black border-2 shadow-xl shadow-amber-600"
+      >
+        Next joke
+      </button>
+    </main>
+    <div class="bg-blob-2 w-[500px] h-[500px] left-[1500px] top-[1200px] absolute"></div>
+    <script type="module" src="./src/main.ts"></script>
   </body>
 </html>
